@@ -24,21 +24,22 @@ export default function Home() {
       setSnippets(data);
     }
     fetchSnippets();
-  }, [])
+  }, []);
 
   const filteredSnippets = snippets.filter((snippet: Snippet) => {
-    const matchesSearch = snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      snippet.description.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesSearch =
+      snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      snippet.description.toLowerCase().includes(searchQuery.toLowerCase());
     // || snippet?.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    const matchesCategory = !selectedCategory || snippet.category === selectedCategory;
+    const matchesCategory =
+      !selectedCategory || snippet.category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
 
   return (
     <>
-
       <Toaster />
       <div className="min-h-screen bg-background">
         <header className="border-b">
@@ -74,9 +75,15 @@ export default function Home() {
                   {categories.map((category) => (
                     <Badge
                       key={category}
-                      variant={selectedCategory === category ? "default" : "outline"}
+                      variant={
+                        selectedCategory === category ? "default" : "outline"
+                      }
                       className="cursor-pointer"
-                      onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
+                      onClick={() =>
+                        setSelectedCategory(
+                          selectedCategory === category ? null : category
+                        )
+                      }
                     >
                       {category}
                     </Badge>
@@ -85,12 +92,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-wrap gap-4">
               {filteredSnippets.map((snippet) => (
-                <SnippetCard
-                  key={snippet.id}
-                  snippet={snippet}
-                />
+                <SnippetCard key={snippet.id} snippet={snippet} />
               ))}
             </div>
           </div>

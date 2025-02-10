@@ -1,16 +1,28 @@
 "use client";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { categories } from "@/lib/data";
 import { useState } from "react";
 import { toast } from "sonner";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { dracula } from "@uiw/codemirror-theme-dracula";
+import Code from "./Code";
 
 interface CreateSnippetDialogProps {
   open: boolean;
@@ -39,7 +51,7 @@ export default function CreateSnippetDialog({
       headers: {
         "Content-Type": "application/json",
       },
-    })
+    });
     setTitle("");
     setDescription("");
     setCode("");
@@ -76,12 +88,11 @@ export default function CreateSnippetDialog({
           </div>
           <div className="space-y-2">
             <Label htmlFor="code">Code</Label>
-            <ReactCodeMirror
-              value={code}
-              theme={dracula}
-              onChange={(e) => setCode(e)}
-              height="auto"
+            <Code
+              code={code}
+              category={category}
               minHeight="200px"
+              setCode={setCode}
             />
           </div>
           <div className="space-y-2">
@@ -100,7 +111,11 @@ export default function CreateSnippetDialog({
             </Select>
           </div>
           <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
               Cancel
             </Button>
             <Button type="submit">Save Snippet</Button>

@@ -1,17 +1,29 @@
 "use client";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { categories } from "@/lib/data";
 import { useState, useEffect } from "react";
 import { Snippet } from "@/lib/types";
 import { toast } from "sonner";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import ReactCodeMirror from "@uiw/react-codemirror";
+import Code from "./Code";
 
 interface EditSnippetDialogProps {
   snippet: Snippet;
@@ -46,14 +58,19 @@ export default function EditSnippetDialog({
     }
     const response = await fetch("/api", {
       method: "PUT",
-      body: JSON.stringify({ id: snippet.id, title, description, code, category }),
+      body: JSON.stringify({
+        id: snippet.id,
+        title,
+        description,
+        code,
+        category,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
-    })
+    });
     if (response.ok) {
       toast.success("Snippet updated successfully!");
-      window.location.reload();
     } else {
       toast.error("Failed to delete snippet!");
     }
@@ -88,12 +105,11 @@ export default function EditSnippetDialog({
           </div>
           <div className="space-y-2">
             <Label htmlFor="edit-code">Code</Label>
-            <ReactCodeMirror
-              value={snippet.code}
-              theme={dracula}
-              onChange={(e) => setCode(e)}
-              height="auto"
+            <Code
+              code={code}
+              category={category}
               minHeight="200px"
+              setCode={setCode}
             />
           </div>
           <div className="space-y-2">
@@ -112,7 +128,11 @@ export default function EditSnippetDialog({
             </Select>
           </div>
           <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
               Cancel
             </Button>
             <Button type="submit">Save Changes</Button>
