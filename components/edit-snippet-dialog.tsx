@@ -21,9 +21,7 @@ import { categories } from "@/lib/data";
 import { useState, useEffect } from "react";
 import { Snippet } from "@/lib/types";
 import { toast } from "sonner";
-import { dracula } from "@uiw/codemirror-theme-dracula";
-import ReactCodeMirror from "@uiw/react-codemirror";
-import Code from "./Code";
+import Code from "./code";
 
 interface EditSnippetDialogProps {
   snippet: Snippet;

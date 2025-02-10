@@ -20,9 +20,7 @@ import {
 import { categories } from "@/lib/data";
 import { useState } from "react";
 import { toast } from "sonner";
-import ReactCodeMirror from "@uiw/react-codemirror";
-import { dracula } from "@uiw/codemirror-theme-dracula";
-import Code from "./Code";
+import Code from "./code";
 
 interface CreateSnippetDialogProps {
   open: boolean;

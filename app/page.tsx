@@ -30,7 +30,6 @@ export default function Home() {
     const matchesSearch =
       snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       snippet.description.toLowerCase().includes(searchQuery.toLowerCase());
-    // || snippet?.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const matchesCategory =
       !selectedCategory || snippet.category === selectedCategory;

@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Snippet } from "@/lib/types";
 import EditSnippetDialog from "./edit-snippet-dialog";
@@ -19,7 +18,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import Code from "./Code";
+import Code from "./code";
+import { copyToClipboard } from "@/utils/copyToClipboard";
 
 interface SnippetCardProps {
   snippet: Snippet;
@@ -28,11 +28,6 @@ interface SnippetCardProps {
 export default function SnippetCard({ snippet }: SnippetCardProps) {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [removeDialogOpen, setRemoveDialogOpen] = useState(false);
-
-  const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(snippet.code);
-    toast.success("Copied to clipboard!");
-  };
 
   const handleDelete = async (id: string | number) => {
     const response = await fetch("/api", {
@@ -52,7 +47,7 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
 
   return (
     <>
-      <Card className="flex flex-col w-fit">
+      <Card className="flex card flex-col w-fit">
         <CardHeader>
           <div className="flex items-start justify-between">
             <CardTitle className="text-lg font-semibold">
@@ -104,7 +99,9 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
               </Popover>
             </div>
           </div>
-          <Badge variant="secondary">{snippet.category}</Badge>
+          <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 w-fit rounded-sm dark:bg-blue-900 dark:text-blue-300">
+            {snippet.category}
+          </span>
         </CardHeader>
         <CardContent className="flex-grow">
           <p className="text-sm text-muted-foreground mb-2">
@@ -120,7 +117,7 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
           <Button
             variant="secondary"
             className="w-full"
-            onClick={copyToClipboard}
+            onClick={() => copyToClipboard(snippet)}
           >
             <Copy className="mr-2 h-4 w-4" />
             Copy Code
