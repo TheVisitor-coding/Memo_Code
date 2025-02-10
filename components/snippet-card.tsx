@@ -49,7 +49,6 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
   const keyColor =
     snippet.category.toLowerCase() as keyof typeof languageColors;
   const categoryColor = languageColors[keyColor];
-  console.log(categoryColor);
 
   return (
     <>
