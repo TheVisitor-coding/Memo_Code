@@ -20,6 +20,7 @@ import {
 } from "@radix-ui/react-popover";
 import Code from "./code";
 import { copyToClipboard } from "@/utils/copyToClipboard";
+import { languageColors } from "@/lib/data";
 
 interface SnippetCardProps {
   snippet: Snippet;
@@ -44,6 +45,11 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
       toast.error("Failed to delete snippet!");
     }
   };
+
+  const keyColor =
+    snippet.category.toLowerCase() as keyof typeof languageColors;
+  const categoryColor = languageColors[keyColor];
+  console.log(categoryColor);
 
   return (
     <>
@@ -99,7 +105,12 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
               </Popover>
             </div>
           </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 w-fit rounded-sm dark:bg-blue-900 dark:text-blue-300">
+          <span
+            style={{
+              backgroundColor: categoryColor ? `${categoryColor}` : "gray",
+            }}
+            className={`text-white text-xs font-semibold me-2 px-2.5 py-0.5 w-fit rounded-sm`}
+          >
             {snippet.category}
           </span>
         </CardHeader>
