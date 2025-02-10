@@ -45,19 +45,19 @@ export const languageExtensions = {
 } as const;
 
 export const languageColors = {
-  javascript: "#f7df1e",
+  javascript: "#d8b121",
   typescript: "#3178c6",
   react: "#61dafb",
   nodejs: "#3c873a",
-  python: "#3776ab",
+  python: "#70A37F",
   css: "#264de4",
   html: "#e44d26",
   documentation: "#00748e",
   php: "#8993be",
   database: "#FF6D00",
-  docker: "#0db7ed",
+  docker: "#B26700",
   vue: "#42b883",
   shell: "#4EAA25",
   yaml: "#cb171e",
-  config: "#00BCD4",
+  config: "#161032",
 };

@@ -10,18 +10,26 @@ import { categories } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Snippet } from "@/lib/types";
 import { Toaster } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const [snippets, setSnippets] = useState<Snippet[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchSnippets() {
-      const response = await fetch("/api");
-      const data = await response.json();
-      setSnippets(data);
+      try {
+        setIsLoading(true);
+        const response = await fetch("/api");
+        const data = await response.json();
+        setSnippets(data);
+        setIsLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
     }
     fetchSnippets();
   }, []);
@@ -92,6 +100,11 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap gap-4">
+              {
+                isLoading && (
+                  <Skeleton className="w-full h-36" />
+                )
+              }
               {filteredSnippets.map((snippet) => (
                 <SnippetCard key={snippet.id} snippet={snippet} />
               ))}

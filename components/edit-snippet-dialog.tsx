@@ -69,6 +69,7 @@ export default function EditSnippetDialog({
     });
     if (response.ok) {
       toast.success("Snippet updated successfully!");
+      window.location.reload();
     } else {
       toast.error("Failed to delete snippet!");
     }
