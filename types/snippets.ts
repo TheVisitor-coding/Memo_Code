@@ -5,5 +5,4 @@ export interface Snippet {
   description: string;
   code: string;
   category: string;
-  // tags: string[];
 }

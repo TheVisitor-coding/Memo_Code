@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Snippet } from "@/lib/types";
 import EditSnippetDialog from "./edit-snippet-dialog";
 import {
   Popover,
@@ -21,6 +20,7 @@ import {
 import Code from "./code";
 import { copyToClipboard } from "@/utils/copyToClipboard";
 import { languageColors } from "@/lib/data";
+import { Snippet } from "@/types/snippets";
 
 interface SnippetCardProps {
   snippet: Snippet;

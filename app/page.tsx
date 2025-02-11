@@ -8,9 +8,9 @@ import SnippetCard from "@/components/snippet-card";
 import CreateSnippetDialog from "@/components/create-snippet-dialog";
 import { categories } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
-import { Snippet } from "@/lib/types";
 import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Snippet } from "@/types/snippets";
 
 export default function Home() {
   const [snippets, setSnippets] = useState<Snippet[]>([]);

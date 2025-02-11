@@ -19,9 +19,9 @@ import {
 } from "@/components/ui/select";
 import { categories } from "@/lib/data";
 import { useState, useEffect } from "react";
-import { Snippet } from "@/lib/types";
 import { toast } from "sonner";
 import Code from "./code";
+import { Snippet } from "@/types/snippets";
 
 interface EditSnippetDialogProps {
   snippet: Snippet;
@@ -38,14 +38,12 @@ export default function EditSnippetDialog({
   const [description, setDescription] = useState(snippet.description);
   const [code, setCode] = useState(snippet.code);
   const [category, setCategory] = useState(snippet.category);
-  // const [tags, setTags] = useState(snippet.tags.join(", "));
 
   useEffect(() => {
     setTitle(snippet.title);
     setDescription(snippet.description);
     setCode(snippet.code);
     setCategory(snippet.category);
-    // setTags(snippet.tags.join(", "));
   }, [snippet]);
 
   const handleSubmit = async (e: React.FormEvent) => {
