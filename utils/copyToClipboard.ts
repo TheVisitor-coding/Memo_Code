@@ -1,4 +1,4 @@
-import { Snippet } from "@/lib/types";
+import { Snippet } from "@/types/snippets";
 import { toast } from "sonner";
 
 export const copyToClipboard = async (snippet: Snippet) => {
