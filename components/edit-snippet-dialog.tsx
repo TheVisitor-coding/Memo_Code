@@ -75,7 +75,7 @@ export default function EditSnippetDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[625px]">
+      <DialogContent className="max-w-3xl w-full overflow-auto">
         <DialogHeader>
           <DialogTitle>Edit Snippet</DialogTitle>
         </DialogHeader>

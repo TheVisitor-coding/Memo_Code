@@ -52,7 +52,7 @@ export default function SnippetCard({ snippet }: SnippetCardProps) {
 
   return (
     <>
-      <Card className="flex card flex-col w-fit">
+      <Card className="flex card flex-col w-fit max-w-2xl">
         <CardHeader>
           <div className="flex items-start justify-between">
             <CardTitle className="text-lg font-semibold">

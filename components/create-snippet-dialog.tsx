@@ -59,7 +59,7 @@ export default function CreateSnippetDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[625px]">
+      <DialogContent className="max-w-3xl w-full overflow-auto">
         <DialogHeader>
           <DialogTitle>Create New Snippet</DialogTitle>
         </DialogHeader>
